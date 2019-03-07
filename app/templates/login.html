@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+<style>
+       @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        
+</style>
+    
+{% block head %}
+
+
+{% endblock %}
+{% block profile %}
+{%endblock%}
+{%block list%}
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves sidebar-link" href="{{ url_for('register') }}"
+        aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">account_circle</i><span
+            class="hide-menu">
+            Register</span></a></li>
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves sidebar-link" href="{{ url_for('policies') }}"
+        aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">trending_up</i><span
+            class="hide-menu">
+            Latest Policies</span></a></li>
+{%endblock%}
+{% block content %}
+<div class="page-wrapper">
+    <div class="container-fluid" style="height: 100%">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+
+                <fieldset class="form-group">
+                <div class="row">            
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <legend class="border-bottom mb-6" style="color:#344c4c;font-size:2em;font-weight:bold;font-family:Open Sans;">Log In</legend>
+                            <br>
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label",style="color:#344c4c;body-weight:bold;font-size:1.3em;" )}}
+                                {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid",style="padding-left:2vw;;border: 2px ;border-radius:20px;background-color:#2eb8b8;color:white;font-weight:bold;") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.email(class="form-control form-control-lg",style="padding-left:2vw;;border: 2px ;border-radius:20px;background-color:#2eb8b8;color:white;font-weight:bold;") }}
+                                {% endif %}
+                            </div>    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+                        <div class="form-group">
+                            {{ form.password.label(class="form-control-label",style="color:#344c4c;body-weight:bold;font-size:1.3em;" )}}
+                            {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-lg is-invalid",style="padding-left:2vw;border: 2px ;border-radius:20px;background-color:#2eb8b8;color:white;font-weight:bold;") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                        <!--    <div class="form-control form-control-lg" style="border: 2px ;border-radius:20px;background-color:#2eb8b8;">-->
+                            {{ form.password(class="form-control form-control-lg form-control-sm",style="padding-left:2vw;border: 2px ;border-radius:20px;background-color:#2eb8b8;color:white;font-weight:bold;") }}
+                            
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-default" ,style="width:100px;border-radius:20px;height:50px;font-size:1.2rem") }}
+                        </div>
+                        <br>
+                        <div>
+                            Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+</body>
+
+</html>

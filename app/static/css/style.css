@@ -1,0 +1,310 @@
+.topnav {
+  overflow: hidden;
+  background-color: #4285F4;
+  z-index:1;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+.chat-popup{
+  width: 360px;
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 15px;
+  border: 3px solid blue;
+  z-index: 9;
+  background-color:black;
+  height: 350px;
+  border-radius: 10px;
+}
+.chat-container {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    border-radius: 20px;
+    border: 1px;
+    max-height: 400px;
+    height: 61vh;
+}
+.chat-message {
+  padding: 1%;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 5%;
+  font-size: 1em;
+  
+}
+.bot-message{
+  background: green;
+  color: white;
+  float: left;
+  left: -55%;
+  
+}
+
+.human-message {
+  background: blue;
+  color: white;
+  float: right;
+
+
+}
+
+#myForm {
+  border-radius: 20px;
+  animation-duration: 0.5s;
+  background-color: black; /*rgb(240, 27, 222);*/
+  display: none;
+  height: 450px;
+  }
+#input_message{
+  color:white;
+  border: 2px solid white; 
+  border-radius: 15px; 
+  padding-left:0.75vw; 
+  height:5vh;
+  margin-right:100px;
+  
+}
+.mee{
+  margin-top:16vh;
+  transition: 0.3s;
+  z-index:-1;
+  height:550px;
+}
+.topnav .my_image{
+  margin-left:20%;
+  width:300px;
+  height:100px;
+}
+.something{
+  display:inline-block;width:10px;
+}
+@media screen and (max-width: 600px) {
+  .topnav .my_image{
+    margin-left:0px;
+    width:320px;
+    height:100px;
+  }
+  .topnav .search-container {
+    float: none;
+  }
+  .mee{
+    margin-top:11vh;
+    opacity:0.85;
+   
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+
+  .chat-popup{
+    width: 300px;
+    height:250px;
+    margin-left:3vw;
+    margin-top:2vh;
+
+  }
+  .chat-container{
+    height:230px;
+  }
+  #myForm{
+    height:300px;
+  }
+  .chat-message {
+    transform:scaleX(0.75);
+    font-size:1.25em;
+    
+  }
+.bot-message{
+  left: -12%;
+}
+
+.human-message {
+padding-left: 10%;
+right:-14%;
+}
+
+}
+
+
+body,html { 
+    height: 100%;
+}
+
+
+
+
+
+.input {
+   
+  border: 1px solid blue;
+  border-radius: 3px;
+}
+#input_message{
+  width:90%;
+  margin-left: 10px;
+  margin-top:5%;
+  
+}
+#loading {
+  float: left;
+  margin: 10%;
+  padding: 5%;
+
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+  
+* {
+    box-sizing: border-box;
+}
+  
+  /* Button used to open the chat form - fixed at the bottom of the page */
+  .open-button {
+  
+    position: fixed;
+    bottom: 23px;
+    right: 10px;
+    width: 280px;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+  }
+  .open-button:hover,.open-button:focus,.open-button:active{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  
+
+  .modal.show{
+    animation-duration: 0.2s;
+  }
+  
+ 
+  
+  .inline-icon {
+    margin-top:25px;
+    display: inline-flex;
+    vertical-align:middle;
+    font-size: 20px !important;
+ }
+
+ .sidebar-link{
+   height: 50px;   
+ }
+ 
+
+ #Userdd{
+   height: 100px;
+ }
+  
+ .user-email{
+   height: 30px;
+ }
+
+ .sidebar-nav{
+   height: 0px;
+ }
+
+ .user-profile{
+   height: 100px;
+ }
+ #target{
+   height:0px;
+ }
+
+ #input_message{
+   height: 20px;
+ }
+ body::-webkit-scrollbar {
+  width: 1em;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 6px rgba(11, 66, 245, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+}
+
+.container-fluid{
+  height: 100%;
+}
+
+.scroll-sidebar{
+  width: 10px;
+}
+
+.card{
+  margin-bottom: 10px;
+}
+
+.left-sidebar{
+  background-color: darkblue;
+}
+
+.form-control-label{
+  font-size: 15px;
+}
+
+.mydiv{
+  width: 90%;
+  border: 5px solid blue;
+  padding: 25px;
+  margin: 25px;
+  border-radius: 15px;
+}
+
+.flow-tex{
+  font-size:20px;
+}
+

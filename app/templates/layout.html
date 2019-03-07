@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Chatbot for E-Governance</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+
+  <!-- Compiled and minified materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="{{ url_for('static', filename='css/chartist.min.css') }}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <link rel="manifest" href="manifest.json">
+  
+  {% block head %}
+
+  {% endblock %}
+</head>
+
+<body>
+  <div class="preloader">
+    <div class="lds-ripple">
+      <div class="lds-pos"></div>
+      <div class="lds-pos"></div>
+    </div>
+  </div>
+  <div id="main-wrapper" data-layout="vertical" data-header-position="absolute" >
+    
+      <div class="topnav" >
+        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close">Menu</i></a>
+        
+        <img src="{{ url_for('static', filename='new.jpg') }}" class="my_image"/>  
+        <div class="search-container" style="margin:3vh 4vw 3vh 3vw ">
+            <input style="border:2px; color:black;border-radius:20px;background-color:white;padding-left:1vw;padding-right:1vw;margin-right:3vw;"type="text" name="searchbar" id="searchbar" placeholder="Input to search" oninput="search(this)">
+        </div>
+      </div>
+      
+    <aside class="left-sidebar mee" data-sidebarbg="skin6" >
+        <!-- <div class="
+        scroll-sidebar"> -->
+        <nav class="sidebar-nav">
+          <ul id="sidebarnav"> 
+            <li class="sidebar-item">
+              <div class="user-content hide-menu m-l-10" style="margin: 0; padding:0 2% 0">
+                  {%block profile%}
+                  {% endblock %}
+              </div>
+            </li>
+            {%block list%}
+            <!-- User Profile-->
+            
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves sidebar-link" href="{{ url_for('profile') }}"
+                aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">person</i><span
+                  class="hide-menu">
+                  Profile</span></a></li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url_for('index')}}"
+                aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">trending_up</i><span
+                  class="hide-menu">Latest
+                  policies</span></a></li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url_for('pins') }}"
+                aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="small material-icons inline-icon" style="position: relative; top:2%">offline_pin</i><span
+                  class="hide-menu">Pinned
+                  policies</span></a></li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url_for('logout') }}"
+                aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">power_settings_new</i><span
+                  class="hide-menu">Logout</span></a></li>
+            {%endblock%}
+          </ul>
+        </nav>
+      <!-- </div> -->
+    </aside>
+
+  <div id="content">{% block content %} {% endblock %}</div>
+  
+
+  <a class="btn-floating btn-large red-gradient blue waves-effect waves-teal z-depth-2" onclick="openForm()" style="position: absolute; right:3%; bottom: 5%;"><i
+      class="fas large material-icons">message</i>
+  </a>
+
+
+  <div class="chat-popup" class="w3-center w3-animate-bottom" id="myForm">
+
+    <div class="chat-container" id="chat-container" style="overflow: auto;">
+      <!-- chat messages -->
+    </div>
+
+    <form id="target">
+      <input class="input" type="text" placeholder="Enter message..." id="input_message"/>
+      <!-- <input type="submit" hidden> -->
+    </form>
+
+  </div>
+  </div>
+  
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+  <script src="{{ url_for('static', filename='js/custom.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <!-- Bootstrap tether Core JavaScript -->
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app-style-switcher.js') }}"></script>
+  <!--Wave Effects -->
+  <script src="{{ url_for('static', filename='js/waves.js') }}"></script>
+  <!--Menu sidebar -->
+  <script src="{{ url_for('static', filename='js/sidebarmenu.js') }}"></script>
+  <!--Custom JavaScript -->
+  <script src="{{ url_for('static', filename='js/custom.1.js') }}"></script>
+  <!--This page JavaScript -->
+
+  <!--chartis chart-->
+  <script src="{{ url_for('static', filename='js/chartist.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chartist-plugin-tooltip.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard1.js') }}"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+  <!-- Script to auto scroll down if overflow occurs -->
+  <script>
+    let toScroll = true;
+    prevHeight = 0;
+    window.setInterval(function () {
+      var elem = document.getElementById("chat-container");
+      if (elem.scrollHeight > prevHeight) {
+        toScroll = true;
+      }
+      if (toScroll) {
+        elem.scrollTop = elem.scrollHeight;
+        toScroll = false;
+        prevHeight = elem.scrollHeight;
+      }
+    }, 500);
+    function openModal(elem){
+        //console.log(elem.classList);
+        number=elem.classList[3].replace("btn","");
+        // console.log(number)
+        $(".modal"+number).addClass("show animated zoomIn" );
+        $(".btn"+number).attr("data-target",".modal"+number)
+    };
+  </script>
+</body>
+
+</html>

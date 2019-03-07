@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <!-- Compiled and minified CSS
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     Compiled and minified JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    
+    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/chartist.min.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    {% endblock %}
+
+
+    {% block content %}
+
+        <div class="page-wrapper" id = "card-display">
+            <div class="d-flex flex-row" style="flex-flow: row wrap; margin-top:7%">
+                {% if searchpol %}
+                    {% for policy in searchpol %}
+                    <div class="col-md-3">
+                        <div class="card" data-toggle="modal" style="width: 15rem; height: 90% ; cursor: pointer">
+                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                            <div class="card-body" style="max-height: 90%">
+                                <h5 class="card-title">{{ policy.Title }}</h5>
+                                <p class="card-text">{{ policy.Description }}</p>
+                            </div>
+                            <a href="{{ policy.Link }}" class="btn btn-primary" style="width:70%; margin-bottom: 10%; align-self: center">Know
+                                more</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>
+                        No policies found for the required search!!
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+
+        {% for policy in policies %}
+        <div class="modal fade" class="popup" id="myModal" role="dialog" style="border-color:blue ; border-radius: 10px; width: 60%;">
+            <div class="modal-dialog"></div>
+        
+            <!-- Modal content-->
+            <div class="modal-content" style="margin:5px; width:99% ;border-color:blue ;border-radius: 10px;">
+        
+                <div class="modal-header">
+                    <div style="width: 100%; margin: 0 auto; text-align: center">
+                        <button type="button" class="close btn-outline-blue" style=" margin-left:40px;" onlick="closeModal()"
+                            data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title" style="align-content: center">{{ policy.Title }}</h2>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>{{ policy.html | safe}}</p>
+                    <h4>Documents needed:</h4>
+                    <ul style="list-style-type:circle;">
+        
+                        {% for i in policy.docs %}
+        
+                        <li>* {{ i | safe}}</li>
+        
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer" style="display: inline-block; align-content: center;">
+                    <div style="width: 100%; margin: 0 auto; text-align: center">
+                        <a class="btn btn-default" style="display:inline-block;width:10%" href="{{ policy.Link }}">Link</a>
+                        <button type="button" class="btn btn-default" style="width:10%" data-dismiss="modal">Close</button>    
+                    </div>
+        
+                </div>
+            </div>
+        
+        </div>
+        </div>
+        {% endfor %}
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/app-style-switcher.js') }}"></script>
+        <!--Wave Effects -->
+        <script src="{{ url_for('static', filename='js/waves.js') }}"></script>
+        <!--Menu sidebar -->
+        <script src="{{ url_for('static', filename='js/sidebarmenu.js') }}"></script>
+        <!--Custom JavaScript -->
+        <script src="{{ url_for('static', filename='js/custom.1.js') }}"></script>
+        <!--This page JavaScript -->
+
+        <!--chartis chart-->
+        <script src="{{ url_for('static', filename='js/chartist.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/chartist-plugin-tooltip.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/dashboard1.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+
+        <script>
+            
+            function ObjectId(x){
+            }
+            let a = "";
+            let x = {{ policies|safe }}
+            let search_pol = {}
+            function search(elem){
+                search_pol = {}
+                barvalue = elem.value.charCodeAt(elem.value.length - 1);
+                //console.log(barvalue)
+                if((barvalue >= 97 && barvalue <=122) || (barvalue >= 65 && barvalue <=90) || [32, 40, 41].includes(barvalue)){
+                    a = elem.value;
+                }
+                else
+                {
+                    elem.value = a.slice(0, elem.value.length - 1);
+                }
+                for(let i=0; i<Object.keys(x).length; i++){
+                    title = x[i]['Title'].toLowerCase()
+                    if(title.includes(a.toLowerCase())){
+                        console.log(title)
+                        search_pol[String(Object.keys(search_pol).length)] = title
+                    }
+                }     
+
+                console.log(JSON.stringify(search_pol))
+                req = $.ajax({
+                    url: "/polsearch",
+                    type: "POST",
+                    data: {'a': search_pol}
+                });
+
+                req.done(function(result){
+                    //console.log('this',result['cards']);
+                    $('#card-display').html(result['cards'])
+                    console.log('yay');
+                });
+            }
+
+            $(document).change(function(){
+            for( i = 1; i<= document.getElementsByClassName('card').length; i++)
+            {
+                console.log(document.getElementsByClassName('card')[i-1])
+                document.getElementsByClassName('card')[i-1].id="btn" + i;
+                document.getElementsByClassName('modal')[i-1].className += " "+"modal" + i;
+            }
+
+            $(".card").hover(function(){
+                $(this).addClass("z-depth-2");
+            }, function(){
+                
+                $(this).removeClass("z-depth-2");
+            });
+
+            $(".card").on("click", function(){
+                console.log(this.id);
+                number=this.id.replace("btn","");
+                console.log(number)
+                $(".modal"+number).addClass("show animated zoomIn" );
+                $("#btn"+number).attr("data-target",".modal"+number)
+            })
+
+            });
+        </script>
+
+        {% endblock %}

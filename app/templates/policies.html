@@ -1,0 +1,170 @@
+{% extends "layout.html" %}
+<style>
+    #my_button{
+        display:inline-block;width:12vw;
+    }
+    #my_button2{
+        width:12vw;
+    }
+    @media screen and (max-width: 600px) {
+        #my_button,#my_button2{
+            transform:scale(1.2);
+        }
+    }
+</style>
+
+
+
+{% block list%}
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves sidebar-link" href="{{ url_for('register') }}"
+    aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">account_circle</i><span
+        class="hide-menu">
+        Register</span></a></li>
+<li class="sidebar-item"> <a class="sidebar-link waves-effect waves sidebar-link" href="{{ url_for('login') }}"
+    aria-expanded="false" style="margin: 0; padding:0 2% 0"><i class="large material-icons inline-icon">exit_to_app</i><span
+        class="hide-menu">
+        Login</span></a></li>
+
+{% endblock %}
+{% block content %}
+
+<div class="page-wrapper">
+<div class="container-fluid" id="card-display">
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages[:((messages|length)-1)] %}
+    <div class="alert alert-{{ category }}">
+        <br>
+        <br>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} -->
+
+
+    <div class="d-flex flex-row" style="flex-flow: row wrap;">
+
+        {% for policy in policies %}
+        <div class="col-md-3">
+            <div class="card" data-toggle="modal" style="width: 15rem; height: 90% ; cursor: pointer">
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                <div class="card-body" style="max-height: 90%">
+                    <h5 class="card-title">{{ policy.Title }}</h5>
+                    <p class="card-text">{{ policy.Description }}</p>
+
+                </div>
+                <a href="{{ policy.Link }}" class="btn btn-primary" style="width:70%; margin-bottom: 10%; align-self: center;margin-bottom:1vh;margin-top: 1vh">Know
+                    more</a>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% for policy in policies %}
+<div class="modal fade " class="popup" id="myModal" role="dialog">
+<div class="modal-dialog"></div>
+
+<!-- Modal content-->
+<div class="modal-content" style="margin:5px; width:98%;">
+
+    <div class="modal-header">
+        <div style="width: 100%; margin: 0 auto; text-align: center">
+            <button type="button" class="close btn-outline-blue" style=" margin-left:40px;" onlick="closeModal()" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">{{ policy.Title }}</h2>
+        </div>
+    </div>
+    <div class="modal-body">
+        <p>{{ policy.html | safe}}</p>
+        <h4>Documents needed:</h4>
+        <ul style="list-style-type:circle;">
+
+            {% for i in policy.docs %}
+
+            <li>* {{ i | safe}}</li>
+
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="modal-footer" style="display: inline-block; align-content: center;">
+        <div style="width: 100%; margin: 0 auto; text-align: center">
+            <a class="btn btn-default" id="my_button"  href="{{ policy.Link }}">Link</a>
+            <button type="button" id="my_button2" class="btn btn-default" data-dismiss="modal">Close</button>    
+        </div>
+
+    </div>
+</div>
+
+</div>
+</div>
+{% endfor %}
+
+
+<script>
+function ObjectId(x){
+}
+let a = "";
+let x = {{ policies|safe }}
+let search_pol = {}
+function search(elem){
+    search_pol = {}
+    barvalue = elem.value.charCodeAt(elem.value.length - 1);
+    //console.log(barvalue)
+    if((barvalue >= 97 && barvalue <=122) || (barvalue >= 65 && barvalue <=90) || [32, 40, 41].includes(barvalue)){
+        a = elem.value;
+    }
+    else
+    {
+        elem.value = a.slice(0, elem.value.length - 1);
+    }
+    for(let i=0; i<Object.keys(x).length; i++){
+        title = x[i]['Title'].toLowerCase()
+        if(title.includes(a.toLowerCase())){
+            console.log(title)
+            search_pol[String(Object.keys(search_pol).length)] = title
+        }
+    }     
+    console.log(JSON.stringify(search_pol))
+    req = $.ajax({
+        url: "/polsearch",
+        type: "POST",
+        data: {'a': search_pol}
+    });
+    req.done(function(result){
+        console.log('this',result['cards']);
+        $('#card-display').html(result['cards'])
+        numbering()
+        console.log('yay');
+    });
+}
+</script>
+
+<script>
+$('body').on('DOMSubtreeModified', '#card-display', function(){
+    for( i = 1; i<= document.getElementsByClassName('card').length; i++)
+    {
+        console.log(document.getElementsByClassName('card')[i-1])
+        document.getElementsByClassName('card')[i-1].id="btn" + i;
+        document.getElementsByClassName('modal')[i-1].className += " "+"modal" + i;
+    }
+});
+$(".card").hover(function(){
+        $(this).addClass("z-depth-2");
+    }, function(){
+       
+        $(this).removeClass("z-depth-2");
+    });
+
+    $(".card").on("click", function(){
+        console.log(this.id);
+        number=this.id.replace("btn","");
+        console.log(number)
+        $(".modal"+number).addClass("show animated zoomIn" );
+        $("#btn"+number).attr("data-target",".modal"+number)
+    });
+</script>
+
+{% endblock %}
+

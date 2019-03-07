@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+
+
+{% block head %}
+
+
+{% endblock %}
+{% block profile %}
+<h3 class="m-b-0 user-name font-medium">{{ users.uname }}</h3>
+<h4 class="op-5 user-email">{{ users.emailid }}</h4>
+{% endblock %}
+{% block content %}
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <br>
+        <br>
+        <br>
+        <div class="mydiv z-depth-3">
+            <h1 class="flow-text"> Profile </h1>
+            <p class="flow-tex">Name : {{ users.fname }} {{users.lname}}</p>
+
+            <p class="flow-tex" v>Username : {{ users.uname }} </p>
+
+            <p class="flow-tex">Email : {{ users.emailid }} </p>
+
+            <p class="flow-tex">Occupation : {{ users.occupation }} </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
