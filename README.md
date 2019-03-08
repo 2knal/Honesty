@@ -3,7 +3,7 @@
  <img width=300px src="./assets/honesty.jpeg" alt="honesty-logo"></a>
 </p>
 
-<h3 align="center">Honesty, <small>cause it's the best policy!<small></h3>
+<h3 align="center">Honesty</h3>
 
 <div align="center">
 
