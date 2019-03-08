@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=300px src="./assets/honesty.png" alt="honesty-logo"></a>
+ <img width=300px src="./assets/honesty.jpeg" alt="honesty-logo"></a>
 </p>
 
 <h3 align="center">Honesty, <small>cause it's the best policy!<small></h3>
