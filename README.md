@@ -67,6 +67,5 @@
 
 ------------------------------------------
 #### Recognition
-`This repository is a part of Smart India Hackathon 2019`
-<br/>
-[@BitsPlease](https://www.sih.gov.in/finalResult)
+* This repository / project was a part of [Smart India Hackathon 2019](https://www.sih.gov.in/finalResult), where it got recognized as the Winner for Problem code: AK5 (ChatBot for EGovernance)
+
