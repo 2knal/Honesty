@@ -36,7 +36,7 @@
 
 ### Installation
 
-* Make sure you have [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and [ngrok](https://ngrok.com/) installed on your device, using ngrok to port an http tunnel to your localhost
+* Make sure you have [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and [ngrok](https://ngrok.com/) installed on your device, using ngrok to port an http tunnel onto your localhost
 * Install dependencies and run flask app
 ```sh
         $ cd app
