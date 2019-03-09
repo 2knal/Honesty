@@ -36,10 +36,12 @@
 
 ### Installation
 
+* Make sure you have [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and [ngrok](https://ngrok.com/) installed on your device, using ngrok to port an http tunnel to your localhost
 * Install dependencies and run flask app
 ```sh
-        $ cd app/
+        $ cd app
         $ pip3 install -r requirements.txt
+        $ sudo service mongod start
         $ flask run
 ```
 * Add your own API keys for TextLocal and Dialogflow
