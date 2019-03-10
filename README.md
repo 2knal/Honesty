@@ -19,13 +19,13 @@
 
 ### Features
 
-- Dialogflow model used to pre-process user queries.
+- Dialogflow model used to pre-process user queries
 
-- doc2vec model to find out similar policies, based on the entities found in the given query.
+- doc2vec model to find out similar policies, based on the entities found in the given query
 
-- PWA, which is cross-platform and can be accessed at ease.
+- PWA, which is cross-platform and can be accessed at ease
 
-- Dynamic scraper and parser to fetch latest policies and schemes.
+- Dynamic scraper and parser to fetch latest policies and schemes
 
 - Multi-language (Hindi for now) support, to entertain queries from any rural person
 
