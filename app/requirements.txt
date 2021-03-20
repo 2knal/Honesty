@@ -27,7 +27,7 @@ googletrans==2.4.0
 grpcio==1.18.0
 idna==2.6
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 jmespath==0.9.4
 langdetect==1.0.7
 MarkupSafe==1.1.0
