@@ -70,7 +70,7 @@ summa==1.2.0
 thinc==6.12.1
 toolz==0.9.0
 tqdm==4.31.1
-ujson==1.35
+ujson==5.2.0
 urllib3==1.22
 Werkzeug==0.14.1
 wikipedia==1.4.0
